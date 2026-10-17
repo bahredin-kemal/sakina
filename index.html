@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="am" data-theme="rose">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>ሰኪና · Sakina</title>
+<meta name="theme-color" content="#d6336c">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<style>
+:root{--bg:#fff5f8;--bgg:linear-gradient(160deg,#ffeef4 0%,#f4ecfe 55%,#e9f3ff 100%);--card:rgba(255,255,255,.74);--ink:#2d1f29;--mute:#7b6672;--acc:#d6336c;--acc2:#8f3df0;--on:#fff;--per:#e8457c;--post:#5fc2a5;--fer:#f5b73c;--line:rgba(120,70,100,.14);--sh:0 12px 32px -14px rgba(150,50,100,.35);--soft:rgba(127,127,127,.1)}
+[data-theme=blue]{--bg:#f1f7ff;--bgg:linear-gradient(160deg,#e8f2ff,#eef0ff 60%,#f3ecff);--ink:#1b2a40;--mute:#5d7290;--acc:#2f7fe0;--acc2:#6a4ff0;--per:#3f7fd0}
+[data-theme=green]{--bg:#f1faf4;--bgg:linear-gradient(160deg,#e6f8ee,#eef8e8 60%,#e8f6f6);--ink:#16301f;--mute:#56765f;--acc:#1f9d63;--acc2:#2aa7b8}
+[data-theme=dark]{--bg:#120f16;--bgg:linear-gradient(160deg,#17121d,#1b1424 60%,#10161f);--card:rgba(38,31,46,.72);--ink:#f3eaf1;--mute:#a99aa6;--acc:#f06a9c;--acc2:#a56bff;--on:#1b1118;--per:#f0608c;--post:#5bb9a0;--fer:#e3b04a;--line:rgba(255,255,255,.1);--sh:0 12px 32px -14px #000}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);background-image:var(--bgg);background-attachment:fixed;color:var(--ink);font-family:'Noto Sans Ethiopic','Abyssinica SIL','Nyala',system-ui,sans-serif;line-height:1.6;min-height:100vh}
+main{max-width:480px;margin:0 auto;padding:20px 16px 120px}
+@media(prefers-reduced-motion:no-preference){main section{animation:up .35s ease both}@keyframes up{from{opacity:0;transform:translateY(8px)}}}
+h1{font-size:1.7rem;margin:0;font-weight:800;background:linear-gradient(90deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent}
+h1 small{display:block;font-size:.78rem;font-weight:400;color:var(--mute);-webkit-text-fill-color:var(--mute)}
+h2{font-size:1rem;margin:0 0 10px;font-weight:700}
+section{background:var(--card);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:26px;padding:18px;margin-top:14px;box-shadow:var(--sh)}
+select,button,input{font:inherit;color:var(--ink);background:var(--soft);border:1px solid var(--line);border-radius:14px;padding:8px 12px}
+button{cursor:pointer;transition:transform .12s}button:active{transform:scale(.96)}
+button.main,.chip[aria-pressed=true]{background:linear-gradient(135deg,var(--acc),var(--acc2));color:var(--on);border-color:transparent;font-weight:600}
+button.big{width:100%;padding:16px;font-size:1.15rem;border-radius:22px;box-shadow:0 14px 28px -12px var(--acc)}
+:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+.dates{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center}
+.dates div{padding:10px 4px;border-radius:16px;background:var(--soft)}.dates small{display:block;color:var(--mute);font-size:.72rem}.dates b{font-size:.86rem}
+.wheel{position:relative;width:250px;margin:6px auto}.wheel svg{width:100%;display:block;filter:drop-shadow(0 8px 14px rgba(214,51,108,.25))}
+.center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.center b{font-size:2.8rem;line-height:1;font-weight:800}.center span{font-size:.85rem;color:var(--mute);max-width:120px}
+.legend{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;font-size:.78rem;color:var(--mute)}.legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:4px}
+.status{font-weight:700;border-left:5px solid var(--acc);padding-left:12px}.status p{margin:4px 0 0;font-weight:400;font-size:.9rem;color:var(--mute)}
+.chips,.row,.tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.row{margin-bottom:8px}.row label{flex:1 1 140px;font-size:.9rem}.row input{width:130px}
+.chip{border-radius:999px}
+.warn{font-size:.78rem;color:var(--mute);margin-top:8px}.n{font-size:1.8rem;font-weight:800}
+.qada{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.tasbih{width:120px;height:120px;border-radius:50%;font-size:2.4rem;font-weight:800;background:linear-gradient(135deg,var(--acc),var(--acc2));color:var(--on);border:0;box-shadow:0 16px 30px -12px var(--acc)}
+.ban{background:linear-gradient(135deg,var(--acc),var(--acc2));color:var(--on);border-radius:18px;padding:10px 14px;margin-top:14px;font-weight:600}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center;font-size:.8rem}.cal div{padding:6px 0;border-radius:12px}
+.cal .t{outline:2px solid var(--ink)}.cal .cp{background:var(--per);color:#fff}.cal .cq{border:2px dashed var(--per)}.cal .cf{background:var(--fer);color:#222}
+.pt{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center}.pt div{background:var(--soft);border-radius:14px;padding:8px 2px;font-size:.85rem}.pt .nx{outline:2px solid var(--acc)}
+ul{margin:0;padding-left:18px}#hist{padding:0}#hist li{display:flex;justify-content:space-between;list-style:none;font-size:.88rem;padding:3px 0}
+details summary{cursor:pointer;font-weight:600}details p,details ol{font-size:.88rem;margin:6px 0}
+#lock{position:fixed;inset:0;background:var(--bg);background-image:var(--bgg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;z-index:9}
+#lock[hidden]{display:none}
+#nav{position:fixed;left:12px;right:12px;bottom:calc(10px + env(safe-area-inset-bottom,0px));max-width:456px;margin:0 auto;background:var(--card);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);border:1px solid var(--line);border-radius:28px;box-shadow:var(--sh);display:flex;padding:6px;z-index:5}
+#nav button{flex:1;border:0;border-radius:20px;background:none;display:flex;flex-direction:column;align-items:center;font-size:.7rem;padding:6px 2px;color:var(--mute)}
+#nav button[aria-selected=true]{color:var(--acc);font-weight:700;background:var(--soft)}
+@media print{#nav,button,input,select{display:none!important}}
+</style>
+</head>
+<body>
+<div id="lock" hidden></div><main id="m"></main><nav id="nav" role="tablist"></nav>
+<script>
+const KEY="sakina";
+const L={
+ttl:["ሰኪና","Sakina"],sub:["የሙስሊም ሴቶች ዑደትና ኢባዳ","Cycle & ibada for Muslim women"],
+tabs:["ቤት|ኢባዳ|ጤና|ቀን|ቅንብር","Home|Ibada|Health|Calendar|Settings"],
+ib:["የኢባዳ ሁኔታ","Ibada status"],
+ibP:["በወር አበባ ላይ ነዎት","You are on your period"],
+ibPd:["ከሰላትና ከግዴታ ጾም ነጻ ነዎት (ሩክሳ)። ዚክር፣ ዱዓ እና ሌላ መልካም ስራ ይቻላል። ደሙ ሲቆም ገሰል አድርገው ወደ ሰላት ይመለሱ፤ የተዉትን ጾም ቀዷ ያውጡ።","You are exempt from prayer and obligatory fasting. Dhikr, dua and other good deeds remain open. When bleeding stops, do ghusl and resume prayer; make up missed fasts later."],
+ibC:["አሁን በንጽህና ላይ ነዎት","You are in a state of purity"],ibCd:["ሰላትና ጾም ግዴታ ነው።","Prayer and fasting are obligatory."],
+ibN:["ዑደት አልተመዘገበም","No cycle logged"],ibNd:["ሰላትና ጾም ግዴታ ነው። «ያለፈ የወር አበባ» ከቀን ታብ ያክሉ።","Prayer and fasting are obligatory. Add a past period in the Calendar tab."],
+ibL:["የወር አበባ ሊደርስ ነው","Your period is due soon"],ibLd:["ደም ሲመጣ «ደሙ ጀመረ» ይጫኑ። እስከዚያ ሰላትና ጾም ግዴታ ነው።","When bleeding starts, tap “Bleeding started”. Until then prayer and fasting are obligatory."],
+ibW:["ዑደቱ ዘግይቷል","Your cycle is late"],ibWd:["ደም ሲመጣ «ደሙ ጀመረ» ይጫኑ። እስከዚያ ሰላትና ጾም ግዴታ ነው።","When bleeding starts, tap “Bleeding started”. Until then prayer and fasting are obligatory."],
+ibX:["ከሚጠበቀው በላይ ቆይቷል","Longer than expected"],ibXd:["ከመዝሀብዎ ከፍተኛ ቀን አልፏል። ኢስቲሓዳ ሊሆን ይችላል፤ ታማኝ ዓሊም ወይም ሐኪም ይጠይቁ።","Past your madhhab's maximum. This may be istihada; ask a trusted scholar or doctor."],
+nMin:["የቆየው ከዝቅተኛው ቀን ያነሰ ነበር፤ ሃይድ ላይሆን ይችላል። ዓሊም ይጠይቁ።","Shorter than the minimum, so it may not be haid. Ask a scholar."],
+n15:["ከቀደመው ሃይድ ጋር ከ15 ቀን ያነሰ ልዩነት አለ። ዓሊም ይጠይቁ።","Less than 15 days of purity since the last haid. Ask a scholar."],
+ram:["ረመዳን ነው፤ የዛሬ ጾም ቀዷ ይሆናል።","It is Ramadan: today's fast must be made up."],
+per:["የወር አበባ","Period"],post:["ከወር አበባ በኋላ","After period"],fer:["የእርግዝና እድል","Fertile window"],pre:["የዑደት መጨረሻ","Late cycle"],day:["ቀን","Day"],
+bS:["ደሙ ጀመረ","Bleeding started"],bE:["ደሙ ቆመ","Bleeding stopped"],
+next:["ቀጣይ የወር አበባ","Next period"],inD:["ከ{n} ቀን በኋላ|{n} ቀን አልፏል","in {n} days|{n} days ago"],feW:["የእርግዝና እድል ቀናት (ግምት)","Fertile days (estimate)"],
+gh:["ደሙ ቆሟል፤ ገሰል አድርገዋል?","Bleeding stopped. Have you done ghusl?"],ghY:["አዎ አድርጌያለሁ","Yes, done"],
+tipT:["የዛሬ ምክር","Today's tip"],
+tp:["ብዙ ውሃ ይጠጡ፤ ብረት የበዛባቸውን ምግቦች (ምስር፣ ጎመን) ይመገቡ።|እረፍት ያድርጉ፤ ሞቅ ያለ ጨርቅ ለሆድ ህመም ይረዳል።","Drink plenty of water; eat iron-rich foods like lentils and greens.|Rest; a warm compress helps cramps."],
+tc:["ቀላል የእግር ጉዞ ጉልበት ይሰጣል።|ፕሮቲንና አትክልት ይመገቡ።","A light walk boosts energy.|Eat protein and vegetables."],
+tf:["ውሃ ይጠጡ፤ ጉልበትዎ ከፍተኛ ነው።|ስራዎን ያቅዱ።","Stay hydrated.|Energy is high; plan busy tasks."],
+tl:["ጣፋጭና ጨው ይቀንሱ፤ ማግኒዥየም ያላቸው ምግቦች ይረዳሉ።|ስሜት ሊዋዥቅ ይችላል፤ በቂ እረፍት ያድርጉ።","Cut back on sugar and salt; magnesium-rich foods help.|Mood may shift; rest well."],
+sym:["ዛሬ የተሰማዎት","How do you feel today?"],syms:["የሆድ ህመም|ራስ ምታት|የስሜት መዋዠቅ|ድካም|የጀርባ ህመም|ደስተኛ","Cramps|Headache|Mood swings|Fatigue|Back pain|Happy"],
+flT:["የደም መጠን","Flow"],fl:["ቀላል|መካከለኛ|ብዙ","Light|Medium|Heavy"],
+nT:["ኒፋስ (ከወሊድ በኋላ ደም)","Nifas (postpartum bleeding)"],nDel:["ሰርዝ","Delete"],
+nOn:["ቀን {d} (ከፍተኛ {m})። ከሰላትና ከጾም ነጻ ነዎት፤ ደሙ ሲቆም ገሰል ያድርጉ።","Day {d} (max {m}). Exempt from prayer and fasting; do ghusl when it stops."],
+nOv:["ከፍተኛውን ቀን አልፏል፤ ኢስቲሓዳ ሊሆን ይችላል። ዓሊም ይጠይቁ።","Past the maximum; may be istihada. Ask a scholar."],nDn:["ኒፋስ {d} ቀን ነበር። ገሰል አይርሱ።","Nifas lasted {d} days. Do not forget ghusl."],
+rg:["የዑደት ተመሳሳይነት","Cycle regularity"],rgs:["በጣም የተመጣጠነ|ትንሽ የሚለያይ|ያልተመጣጠነ","Very regular|Slightly varying|Irregular"],rgD:["አማካይ ከ21 በታች ወይም ከ35 በላይ ከሆነ ሐኪም ያማክሩ።","If your average is under 21 or over 35 days, see a doctor."],
+prT:["የሰላት ክትትል","Prayer tracker"],pr:["ፈጅር|ዙህር|ዐስር|መግሪብ|ዒሻ","Fajr|Dhuhr|Asr|Maghrib|Isha"],prOff:["በወር አበባ/ኒፋስ ላይ ሰላት አይጠየቅም።","Prayer is not required during haid/nifas."],
+stk:["የተከታታይ ቀናት: {a} · ያለፉት 7 ቀን: {b}%","Streak: {a} days · last 7 days: {b}%"],
+sf:["ዛሬ የሱና ጾም ቀን ነው (ሰኞ/ሐሙስ/አያሙል ቢድ)።","Today is a sunnah fasting day (Mon/Thu/white days)."],
+ptT:["የሰላት ሰዓት (ግምት)","Prayer times (estimate)"],ptn:["ፈጅር|ፀሐይ መውጫ|ዙህር|ዐስር|መግሪብ|ዒሻ","Fajr|Sunrise|Dhuhr|Asr|Maghrib|Isha"],
+loc:["አካባቢዬን ተጠቀም (በስልክዎ ብቻ ይቀመጣል)","Use my location (stays on your phone)"],
+ptW:["ሰዓቶቹ የስሌት ግምቶች ናቸው (ፈጅር 18°፣ ዒሻ 17°)። ከአካባቢዎ መስጂድ ጋር ያስተያዩ።","Calculated estimates (Fajr 18°, Isha 17°). Compare with your local mosque."],
+nxt:["ቀጣይ: {n} በ{m} ደቂቃ","Next: {n} in {m} min"],qb:["ቂብላ: ከሰሜን በሰዓት አቅጣጫ {d}°","Qibla: {d}° clockwise from north"],
+qT:["የቀዷ ጾም","Qada fasts"],left:["ቀሪ ቀናት","days left"],add:["+ አስቀርቻለሁ","+ I missed one"],done:["✓ ቀዷ አውጥቻለሁ","✓ I made one up"],
+qc:["በታሪክ ያሉ {n} የረመዳን ቀናትን ወደ ቀዷ ጨምር","Add {n} Ramadan days from history to qada"],
+ramNow:["ረመዳን ነው · የዛሬ ጾም","Ramadan · today's fast"],faF:["ጾምኩ","I fasted"],faM:["አልጾምኩም (+ቀዷ)","Missed (+qada)"],ramIn:["ወደ ረመዳን {n} ቀን ቀርቷል","{n} days to Ramadan"],
+ocT:["መጪ ኢስላማዊ ቀናት","Upcoming Islamic dates"],ocn:["የሂጅራ አዲስ ዓመት|አሹራ|ረመዳን|ዒድ አል-ፊጥር|የዐረፋ ቀን|ዒድ አል-አድሃ","Hijri new year|Ashura|Ramadan|Eid al-Fitr|Day of Arafah|Eid al-Adha"],tdy:["ዛሬ","Today"],
+calT:["የቀን መቁጠሪያ","Calendar"],hT:["የዑደት ታሪክ","Cycle history"],avg:["አማካይ ዑደት","Average cycle"],ongo:["በመቀጠል ላይ","ongoing"],
+pastL:["ያለፈ የወር አበባ መጀመሪያ","Start of a past period"],chT:["የዑደት ርዝመት (ቀን)","Cycle length (days)"],
+set:["ቅንብር","Settings"],lang:["ቋንቋ","Language"],theme:["ገጽታ","Theme"],th:["ሮዝ|ሰማያዊ|አረንጓዴ|ጨለማ|ራስ-ሰር","Rose|Blue|Green|Dark|Auto"],
+madh:["መዝሀብ","Madhhab"],mS:["ሻፊዒ (1–15)","Shafi'i (1–15)"],mH:["ሐነፊ (3–10)","Hanafi (3–10)"],
+cl:["የዑደት ርዝመት (ቀን)","Cycle length (days)"],pl:["የወር አበባ ቀናት","Period length (days)"],
+pin:["የመቆለፊያ PIN","Lock PIN"],save:["አስቀምጥ","Save"],unl:["PIN ያስገቡ","Enter PIN"],
+hij:["የሂጅራ ማስተካከያ","Hijri adjust"],fs:["የፊደል መጠን","Text size"],
+exp:["አውርድ","Export"],imp:["አስገባ","Import"],clr:["ሁሉንም አጥፋ","Erase all"],sure:["መረጃው በሙሉ ይጠፋል። እርግጠኛ ነዎት?","All data will be erased. Are you sure?"],
+sum:["ለሐኪም ማጠቃለያ ቅዳ","Copy summary for doctor"],cpd:["ተቀድቷል ✓","Copied ✓"],
+bk:["ከ30 ቀን በላይ ሆኗል ዳታዎን አላወረዱም፤ በቅንብር «አውርድ» ይጫኑ።","Over 30 days since your last backup. Tap “Export” in Settings."],
+eth:["ኢትዮጵያ","Ethiopian"],hj:["ሂጅራ","Hijri"],gr:["ግሪጎሪያን","Gregorian"],
+mon:["መስከረም|ጥቅምት|ኅዳር|ታኅሣሥ|ጥር|የካቲት|መጋቢት|ሚያዝያ|ግንቦት|ሰኔ|ሐምሌ|ነሐሴ|ጳጉሜ","Meskerem|Tikimt|Hidar|Tahsas|Tir|Yekatit|Megabit|Miazia|Ginbot|Sene|Hamle|Nehase|Pagume"],
+gT:["መመሪያ (ብዙሃኑ አመለካከት፤ መዝሀቦች ይለያያሉ፤ ዓሊም ይጠይቁ)","Guide (majority view; schools differ; ask a scholar)"],
+gh1:["ገሰል ከወር አበባ/ኒፋስ በኋላ","Ghusl after haid/nifas"],
+gs:["ኒያ በልብ ማድረግ።|እጅንና የግል ክፍልን ማጠብ።|ውዱእ ማድረግ።|ውሃ በራስ ላይ ሶስት ጊዜ ማፍሰስ፤ የጸጉር ስር እንዲረጥብ።|የቀረውን አካል በሙሉ ማዳረስ።","Make the intention in your heart.|Wash hands and private parts.|Perform wudu.|Pour water over the head three times, wetting the hair roots.|Wash the rest of the body."],
+gr1:["በወር አበባ የተከለከሉ፦ ሰላት፣ ጾም፣ ጠዋፍ፣ የባልና ሚስት ግንኙነት (ብዙሃኑ ሙስሃፍ መንካትንና መስጂድ ውስጥ መቆየትንም ይጨምራል፤ ሐነፊዎችና ሻፊዒዮች በዝርዝር ይለያያሉ)። የተፈቀዱ፦ ዚክር፣ ዱዓ፣ ቁርአን ማዳመጥ። ሰላት ቀዷ አይወጣም፤ ጾም ቀዷ ይወጣል።","During haid, not allowed: prayer, fasting, tawaf, marital relations (the majority also include touching the mushaf and staying in the mosque; schools differ in detail). Allowed: dhikr, dua, listening to Quran. Missed prayers are not made up; missed fasts are."],
+waT:["ውሃ (ብርጭቆ)","Water (glasses)"],moT:["ስሜት","Mood"],slT:["እንቅልፍ (ሰዓት)","Sleep (hours)"],tsT:["ተስቢሕ","Tasbih"],rs:["ዳግም","Reset"],dhT:["የዛሬ ዚክር","Dhikr of the day"],csv:["CSV አውርድ","Download CSV"],
+warn:["የእርግዝና እድል ቀናት ግምት ብቻ ናቸው፤ እንደ የወሊድ መከላከያ አይጠቀሙ። አፑ ልማድ (ዓዳ) ያላትን ሴት ድንጋጌ አያስተናግድም፤ ሁሉንም የሃይድ ድንጋጌ በዓሊም ያረጋግጡ። PIN ተራ መቆለፊያ ነው፤ ዳታው አልተመሰጠረም። መረጃዎ በስልክዎ ብቻ ይቀመጣል።","Fertile-window days are estimates; do not use them as contraception. The app does not handle rulings for women with an established habit (ada); have all rulings confirmed by a scholar. The PIN is a simple lock; data is not encrypted. Your data stays on your phone."]
+};
+const $=id=>document.getElementById(id);
+const t=(k,o)=>{let s=L[k][S.lang==="am"?0:1];if(o)for(const x in o)s=s.replace("{"+x+"}",o[x]);return s};
+const ls=k=>t(k).split("|");
+const D=s=>{const[a,b,c]=s.split("-");return new Date(+a,+b-1,+c)};
+const iso=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+const gap=(a,b)=>Math.round((b-a)/864e5);
+const add=(d,n)=>{const x=new Date(d);x.setDate(x.getDate()+n);return x};
+const today=()=>{const d=new Date();return new Date(d.getFullYear(),d.getMonth(),d.getDate())};
+const DH=[["سُبْحَانَ اللَّهِ وَبِحَمْدِهِ","አላህ ጥራት ይገባው፤ ምስጋናም ለእርሱ ነው","Glory and praise be to Allah"],["أَسْتَغْفِرُ اللَّهَ","አላህን ምህረት እጠይቃለሁ","I seek Allah's forgiveness"],["لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ","ከአላህ በቀር ኃይልም ብርታትም የለም","There is no power or might except with Allah"],["اللَّهُمَّ صَلِّ وَسَلِّمْ عَلَى نَبِيِّنَا مُحَمَّدٍ","አላህ ሆይ፣ በነቢያችን ሙሐመድ ላይ ሰላትና ሰላም አውርድ","O Allah, send blessings and peace upon our Prophet Muhammad"],["حَسْبُنَا اللَّهُ وَنِعْمَ الْوَكِيلُ","አላህ ይበቃናል፤ ምርጥ ጠባቂም እርሱ ነው","Allah is enough for us, and the best Disposer of affairs"]];
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+let S=Object.assign({lang:"am",theme:"auto",cl:28,pl:6,madh:"shafi",hij:0,qa:0,qc:[],cycles:[],logs:{},day:{},fa:{},pin:null,tab:"home",ni:null,loc:null,lb:"",fs:100},(()=>{try{return JSON.parse(localStorage.getItem(KEY)||localStorage.getItem("noor")||"{}")}catch(e){return{}}})());
+if(typeof S.pin==="string")S.pin=null; // old weak-hash PIN is dropped
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+let locked=!!S.pin,cm=0,copied=false,qh=0;
+const lim=()=>S.madh==="hanafi"?{min:3,max:10}:{min:1,max:15};
+const dy=k=>S.day[k]=Object.assign({fl:-1,w:0,pr:[0,0,0,0,0],ad:0,m:-1,sl:""},S.day[k]);
+
+async function hp(p,salt){const k=await crypto.subtle.importKey("raw",new TextEncoder().encode(p),"PBKDF2",false,["deriveBits"]);
+ const b=await crypto.subtle.deriveBits({name:"PBKDF2",salt:new TextEncoder().encode(salt),iterations:150000,hash:"SHA-256"},k,256);
+ return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join("")}
+
+function ethiopic(d){
+ const a=Math.floor((14-(d.getMonth()+1))/12),y=d.getFullYear()+4800-a,m=d.getMonth()+1+12*a-3;
+ const j=d.getDate()+Math.floor((153*m+2)/5)+365*y+Math.floor(y/4)-Math.floor(y/100)+Math.floor(y/400)-32045;
+ const r=(j-1723856)%1461,n=r%365+365*Math.floor(r/1460);
+ return{y:4*Math.floor((j-1723856)/1461)+Math.floor(r/365)-Math.floor(r/1460),m:Math.floor(n/30),d:n%30+1}}
+function hparts(d,month){const x=add(d,S.hij);
+ return new Intl.DateTimeFormat("en-u-ca-islamic-umalqura-nu-latn",{day:"numeric",month,year:"numeric"}).formatToParts(x)}
+const hv=(p,k)=>p.find(e=>e.type===k).value;
+const hijri=d=>{const p=hparts(d,"long");return hv(p,"day")+" "+hv(p,"month")+" "+hv(p,"year").replace(/\s*AH/,"")};
+const isRam=d=>{try{return+hv(hparts(d,"numeric"),"month")===9}catch(e){return false}};
+
+function avg(){const st=S.cycles.map(c=>D(c.s)),g=[];
+ for(let i=1;i<st.length;i++){const x=gap(st[i-1],st[i]);if(x>=15&&x<=60)g.push(x)}
+ const r=g.slice(-6);return r.length?Math.round(r.reduce((a,b)=>a+b,0)/r.length):0}
+function phase(day,cl,pl){const ov=cl-14;
+ if(day<=pl)return"p"; if(day>=ov-5&&day<=ov+1)return"f"; if(day>ov+1)return"l"; return"c"}
+function getStatus(){
+ const td=today(),{min,max}=lim(),cl=avg()||+S.cl,last=S.cycles[S.cycles.length-1],open=!!(last&&!last.e),prev=S.cycles[S.cycles.length-2];
+ let h=t("ibN"),d=t("ibNd"),cur="c",day=0;
+ if(last){day=gap(D(last.s),td)+1;
+  if(open){cur="p";
+   if(day>max){h=t("ibX");d=t("ibXd")}else{h=t("ibP");d=t("ibPd")}
+   if(prev&&prev.e&&gap(D(prev.e),D(last.s))<15)d+=" "+t("n15");
+   if(isRam(td))d+=" "+t("ram");
+  }else{const len=gap(D(last.s),D(last.e))+1;cur=phase(Math.min(day,cl),cl,len);
+   if(day>cl){h=t("ibW");d=t("ibWd")}else if(day>cl-3){h=t("ibL");d=t("ibLd")}else{h=t("ibC");d=t("ibCd")}
+   if(len<min&&day<=len+7)d+=" "+t("nMin")}}
+ const ni=S.ni&&!S.ni.e;
+ if(ni){h=t("ibP");d=t("ibPd")}
+ return{td,cl,last,open,h,d,cur,day,exempt:open||ni}}
+
+function ptimes(d,lat,lng){
+ const rad=Math.PI/180,sn=a=>Math.sin(a*rad),cs=a=>Math.cos(a*rad);
+ const n=(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate(),12)-Date.UTC(2000,0,1,12))/864e5;
+ const g=(357.529+.98560028*n)%360,q=(280.459+.98564736*n)%360,Lg=(q+1.915*sn(g)+.02*sn(2*g))%360,e=23.439-3.6e-7*n;
+ let ra=Math.atan2(cs(e)*sn(Lg),cs(Lg))/rad/15;ra=(ra%24+24)%24;
+ let eq=q/15-ra;if(eq>12)eq-=24;if(eq<-12)eq+=24;
+ const dec=Math.asin(sn(e)*sn(Lg))/rad,noon=12-d.getTimezoneOffset()/60-lng/15-eq;
+ const ang=a=>Math.acos((-sn(a)-sn(dec)*sn(lat))/(cs(dec)*cs(lat)))/rad/15;
+ const f=S.madh==="hanafi"?2:1,A=-Math.atan(1/(f+Math.tan(Math.abs(lat-dec)*rad)))/rad;
+ return[noon-ang(18),noon-ang(.833),noon,noon+ang(A),noon+ang(.833),noon+ang(17)]}
+const hm=h=>{if(isNaN(h))return"–";const m=Math.round(((h%24)+24)%24*60)%1440;return String(Math.floor(m/60)).padStart(2,"0")+":"+String(m%60).padStart(2,"0")};
+const qibla=(lat,lng)=>{const r=Math.PI/180,dl=(39.8262-lng)*r;return(Math.atan2(Math.sin(dl),Math.cos(lat*r)*Math.tan(21.4225*r)-Math.sin(lat*r)*Math.cos(dl))/r+360)%360};
+
+function ramDays(c){let n=0;if(!c.e)return 0;for(let d=D(c.s);d<=D(c.e);d=add(d,1))if(isRam(d)&&!S.fa[iso(d)])n++;return n}
+function nextRam(td){for(let i=0;i<400;i++)if(isRam(add(td,i)))return i;return-1}
+const chip=(a,v,on,n)=>`<button class="chip" aria-pressed="${on}" data-a="${a}" data-v="${v}">${n}</button>`;
+
+/* ---- tab builders ---- */
+function home(s){
+ const{td,cl,last,open}=s,e=ethiopic(td),mon=ls("mon");
+ let h=`<section><div class="dates">${[[t("eth"),`${mon[e.m]} ${e.d}, ${e.y}`],[t("hj"),hijri(td)],[t("gr"),td.toLocaleDateString(S.lang==="am"?"am-ET":"en-GB",{day:"numeric",month:"short",year:"numeric"})]].map(([a,b])=>`<div><small>${a}</small><b>${b}</b></div>`).join("")}</div></section>`;
+ if(S.cycles.length&&(!S.lb||gap(D(S.lb),td)>30))h+=`<div class="ban">${t("bk")}</div>`;
+ h+=`<section style="background:none;border:0;padding:0"><button class="main big" data-a="${open?"be":"bs"}">${open?t("bE"):t("bS")}</button></section>`;
+ const pl=+S.pl,ov=cl-14,shown=Math.max(1,Math.min(s.day||1,cl)),R=95,C=2*Math.PI*R;
+ const seg=[[0,pl,"var(--per)"],[pl,ov-6,"var(--post)"],[ov-6,ov+1,"var(--fer)"],[ov+1,cl,"var(--post)"]];
+ let svg=`<circle cx="120" cy="120" r="${R}" fill="none" stroke="var(--line)" stroke-width="22"/>`;
+ seg.forEach(([a,b,c])=>{if(b>a){const l=(b-a)/cl*C;svg+=`<circle cx="120" cy="120" r="${R}" fill="none" stroke="${c}" stroke-width="22" stroke-dasharray="${l} ${C-l}" stroke-dashoffset="${-a/cl*C}" transform="rotate(-90 120 120)"/>`}});
+ if(last){const ang=((shown-.5)/cl)*2*Math.PI-Math.PI/2;svg+=`<circle cx="${120+R*Math.cos(ang)}" cy="${120+R*Math.sin(ang)}" r="9" fill="var(--card)" stroke="var(--ink)" stroke-width="3"/>`}
+ h+=`<section><div class="wheel"><svg viewBox="0 0 240 240" role="img" aria-label="${t("ttl")}">${svg}</svg><div class="center"><b>${last?s.day:"–"}</b><span>${last?t("day")+" · "+t({p:"per",c:"post",f:"fer",l:"pre"}[s.cur]):""}</span></div></div>
+ <div class="legend">${[["per","per"],["post","post"],["fer","fer"]].map(([c,k])=>`<span><i style="background:var(--${c})"></i>${t(k)}</span>`).join("")}</div></section>`;
+ h+=`<section><h2>${t("ib")}</h2><div class="status" aria-live="polite">${s.h}<p>${s.d}</p></div></section>`;
+ if(last){const sd=D(last.s);let nx=add(sd,cl),dn=gap(td,nx),fs=add(sd,ov-6),fe=add(sd,ov+1);
+  if(fe<td){fs=add(nx,ov-6);fe=add(nx,ov+1)}
+  const f=(d)=>d.toLocaleDateString(S.lang==="am"?"am-ET":"en-GB",{day:"numeric",month:"short"});
+  const w=t("inD").split("|"),txt=(dn>=0?w[0]:w[1]).replace("{n}",Math.abs(dn));
+  h+=`<section><h2>${t("next")}</h2><b>${f(nx)}</b> · ${txt}<div class="warn">${t("feW")}: ${f(fs)} – ${f(fe)}</div></section>`;
+  if(!open&&S.gh!==last.s&&gap(D(last.e),td)<=3)h+=`<section><h2>${t("gh")}</h2><button class="main" data-a="gh">${t("ghY")}</button></section>`}
+ const tl=ls("t"+s.cur),o=td.getDate();
+ h+=`<section><h2>${t("tipT")}</h2><ul>${[tl[o%tl.length]].map(x=>`<li>${x}</li>`).join("")}</ul></section>`;
+ return h}
+
+function ibada(s){
+ const td=today(),k=iso(td),r=dy(k),wd=td.getDay();let h="";
+ h+=`<section><h2>${t("prT")}</h2>`+(s.exempt?`<div class="warn" style="margin:0">${t("prOff")}</div>`:`<div class="chips">${ls("pr").map((n,i)=>chip("pr",i,!!r.pr[i],n)).join("")}</div>`);
+ const hd=+hv(hparts(td,"numeric"),"day");
+ if(!s.exempt&&(wd===1||wd===4||(hd>=13&&hd<=15)))h+=`<div class="warn">${t("sf")}</div>`;
+ let st=0;for(let i=0;i<365;i++){const d=add(td,-i),p=(S.day[iso(d)]||{}).pr||[];
+  if(S.cycles.some(c=>D(c.s)<=d&&d<=(c.e?D(c.e):td)))continue;
+  if(p.length===5&&p.every(Boolean))st++;else if(i>0)break}
+ let wn=0,wdn=0;for(let i=0;i<7;i++){const d=add(td,-i);if(S.cycles.some(c=>D(c.s)<=d&&d<=(c.e?D(c.e):td)))continue;wdn++;wn+=((S.day[iso(d)]||{}).pr||[]).filter(Boolean).length}
+ h+=`<div class="warn">${t("stk",{a:st,b:wdn?Math.round(wn/(wdn*5)*100):0})}</div></section>`;
+
+ const dk=DH[(td.getDate()+td.getMonth())%DH.length];
+ h+=`<section><h2>${t("dhT")}</h2><div dir="rtl" lang="ar" style="font-size:1.5rem;text-align:center">${dk[0]}</div><div class="warn" style="text-align:center">${dk[S.lang==="am"?1:2]}</div></section><section><h2>${t("tsT")}</h2><div class="qada"><button class="tasbih" data-a="tb">${r.ad}</button><button data-a="tbr">${t("rs")}</button></div></section>`;
+ // prayer times + qibla
+ h+=`<section><h2>${t("ptT")}</h2>`;
+ if(!S.loc)h+=`<button class="main" data-a="loc">${t("loc")}</button>`;
+ else{const ts=ptimes(td,S.loc.lat,S.loc.lng),n=new Date(),now=n.getHours()+n.getMinutes()/60,ix=[0,2,3,4,5].find(i=>ts[i]>now),nm=ls("ptn");
+  h+=`<div class="pt">${ts.map((v,i)=>`<div class="${i===ix?"nx":""}"><small>${nm[i]}</small><br><b>${hm(v)}</b></div>`).join("")}</div>`;
+  if(ix!==undefined)h+=`<div class="status" style="margin-top:10px">${t("nxt",{n:nm[ix],m:Math.round((ts[ix]-now)*60)})}</div>`;
+  const b=qibla(S.loc.lat,S.loc.lng);
+  h+=`<div class="qada" style="margin-top:10px"><div>${t("qb",{d:Math.round(b)})}</div><svg viewBox="-40 -40 80 80" width="70" aria-hidden="true"><circle r="36" fill="none" stroke="var(--line)" stroke-width="3"/><path d="M0-32L8 6H-8Z" fill="var(--acc)" transform="rotate(${b})"/></svg></div><div class="warn">${t("ptW")}</div>`}
+ h+=`</section>`;
+ // fasting
+ const ri=nextRam(td);
+ h+=`<section><h2>${t("qT")}</h2><div class="qada"><div><span class="n">${S.qa}</span> ${t("left")}</div><div class="tools"><button data-a="qa">${t("add")}</button><button data-a="qd">${t("done")}</button></div></div>`;
+ const pend=S.cycles.filter(c=>c.e&&!S.qc.includes(c.s)).reduce((a,c)=>a+ramDays(c),0);
+ if(pend)h+=`<div style="margin-top:10px"><button data-a="qc" data-v="${pend}">${t("qc",{n:pend})}</button></div>`;
+ if(ri===0&&!s.exempt){const f=S.fa[k];h+=`<h2 style="margin-top:14px">${t("ramNow")}</h2><div class="chips">${chip("fa","f",f==="f",t("faF"))}${chip("fa","m",f==="m",t("faM"))}</div>`}
+ else if(ri>0)h+=`<div class="warn">${t("ramIn",{n:ri})}</div>`;
+ h+=`</section>`;
+ // occasions
+ const ids=["1-1","1-10","9-1","10-1","12-9","12-10"],nm=ls("ocn"),found=[];
+ for(let i=0;i<400&&found.length<4;i++){const p=hparts(add(td,i),"numeric"),id=+hv(p,"month")+"-"+ +hv(p,"day"),x=ids.indexOf(id);if(x>=0)found.push([nm[x],i])}
+ h+=`<section><h2>${t("ocT")}</h2><ul>${found.map(([n,i])=>`<li>${n} · ${i?t("inD").split("|")[0].replace("{n}",i):t("tdy")}</li>`).join("")}</ul></section>`;
+ return h}
+
+function health(s){
+ const td=today(),k=iso(td),r=dy(k),log=S.logs[k]||[];
+ let h=`<section><h2>${t("sym")}</h2><div class="chips">${ls("syms").map((n,i)=>chip("sy",i,log.includes(i),n)).join("")}</div></section>`;
+ if(s.open)h+=`<section><h2>${t("flT")}</h2><div class="chips">${ls("fl").map((n,i)=>chip("fl",i,r.fl===i,n)).join("")}</div></section>`;
+
+ h+=`<section><h2>${t("waT")}</h2><div class="qada"><span class="n">${r.w}</span><div class="tools"><button data-a="w" data-v="-1" aria-label="-">−</button><button data-a="w" data-v="1" aria-label="+">+</button></div></div><h2 style="margin-top:14px">${t("moT")}</h2><div class="chips">${["😞","😕","😐","🙂","😊"].map((e,i)=>chip("md",i,r.m===i,e)).join("")}</div><div class="row" style="margin-top:10px"><label for="sl">${t("slT")}</label><input type="number" id="sl" data-f="sl" min="0" max="24" step="0.5" value="${r.sl}"></div></section>`;
+ const ni=S.ni,mx=S.madh==="hanafi"?40:60;
+ h+=`<section><h2>${t("nT")}</h2>`;
+ if(!ni)h+=`<button data-a="ni0">${t("bS")}</button>`;
+ else{const dd=gap(D(ni.s),ni.e?D(ni.e):td)+1;
+  h+=`<div class="status">${ni.e?t("nDn",{d:dd}):dd>mx?t("nOv"):t("nOn",{d:dd,m:mx})}</div><div class="row" style="margin-top:8px">${ni.e?"":`<button class="main" data-a="ni1">${t("bE")}</button>`}<button data-a="nid">${t("nDel")}</button></div>`}
+ h+=`</section>`;
+ const st=S.cycles.map(c=>D(c.s)),g=[];for(let i=1;i<st.length;i++)g.push(gap(st[i-1],st[i]));
+ if(g.length>=3){const a=g.reduce((p,q)=>p+q,0)/g.length,sd=Math.sqrt(g.reduce((p,q)=>p+(q-a)**2,0)/g.length);
+  h+=`<section><h2>${t("rg")}</h2>${ls("rgs")[sd<=2?0:sd<=4?1:2]} (±${sd.toFixed(1)})${a<21||a>35?`<div class="warn">${t("rgD")}</div>`:""}</section>`}
+ return h}
+
+function calendar(s){
+ const td=s.td,f=new Date(td.getFullYear(),td.getMonth()+cm,1),nd=new Date(f.getFullYear(),f.getMonth()+1,0).getDate(),lc=S.lang==="am"?"am-ET":"en-GB";
+ const last=s.last,cl=s.cl,ov=cl-14,pl=+S.pl;let nx=null,fs=null,fe=null;
+ if(last){const sd=D(last.s);nx=add(sd,cl);fs=add(sd,ov-6);fe=add(sd,ov+1);if(fe<td){fs=add(nx,ov-6);fe=add(nx,ov+1)}}
+ let g=Array.from({length:7},(_,i)=>`<div><b>${new Date(2024,0,7+i).toLocaleDateString(lc,{weekday:"narrow"})}</b></div>`).join("")+"<div></div>".repeat(f.getDay());
+ for(let i=1;i<=nd;i++){const d=new Date(f.getFullYear(),f.getMonth(),i);let c="";
+  if(S.cycles.some(y=>D(y.s)<=d&&d<=(y.e?D(y.e):td)))c="cp";else if(nx&&d>=nx&&d<add(nx,pl))c="cq";else if(fs&&d>=fs&&d<=fe)c="cf";
+  if(+d===+td)c+=" t";g+=`<div class="${c}">${i}</div>`}
+ let h=`<section><h2>${t("calT")}: ${f.toLocaleDateString(lc,{month:"long",year:"numeric"})}</h2><div class="cal">${g}</div><div class="row" style="margin-top:8px;justify-content:center"><button data-a="cm" data-v="-1" aria-label="‹">‹</button><button data-a="cm" data-v="1" aria-label="›">›</button></div></section>`;
+ const a=avg();
+ h+=`<section><h2>${t("hT")}</h2>${a?`<div class="warn" style="margin:0 0 8px">${t("avg")}: ${a}</div>`:""}<ul id="hist">${S.cycles.map((c,i)=>({c,i})).slice(-5).reverse().map(({c,i})=>`<li><span>${c.s} → ${c.e||t("ongo")}</span><button data-a="hd" data-v="${i}" aria-label="×">×</button></li>`).join("")}</ul>
+ <div class="row" style="margin-top:8px"><label for="past">${t("pastL")}</label><input type="date" id="past" max="${iso(td)}"><button data-a="pa">+</button></div></section>`;
+ const st=S.cycles.map(c=>D(c.s)),ln=[];for(let i=1;i<st.length;i++)ln.push(gap(st[i-1],st[i]));
+ const bars=ln.slice(-8);
+ if(bars.length){const m=Math.max(...bars,30);h+=`<section><h2>${t("chT")}</h2><svg viewBox="0 0 ${bars.length*40} 90" style="width:100%">${bars.map((v,i)=>`<rect x="${i*40+6}" y="${70-v/m*60}" width="28" height="${v/m*60}" rx="5" fill="var(--acc)"/><text x="${i*40+20}" y="84" text-anchor="middle" font-size="11" fill="var(--ink)">${v}</text>`).join("")}</svg></section>`}
+ return h}
+
+function settings(){
+ const th=["rose","blue","green","dark","auto"],tn=ls("th");
+ return`<section><h2>${t("set")}</h2>
+ <div class="row"><label for="lang">${t("lang")}</label><select id="lang" data-f="lang"><option value="am"${S.lang==="am"?" selected":""}>አማርኛ</option><option value="en"${S.lang==="en"?" selected":""}>English</option></select></div>
+ <div class="row"><label for="theme">${t("theme")}</label><select id="theme" data-f="theme">${th.map((v,i)=>`<option value="${v}"${S.theme===v?" selected":""}>${tn[i]}</option>`).join("")}</select></div>
+ <div class="row"><label for="madh">${t("madh")}</label><select id="madh" data-f="madh"><option value="shafi"${S.madh==="shafi"?" selected":""}>${t("mS")}</option><option value="hanafi"${S.madh==="hanafi"?" selected":""}>${t("mH")}</option></select></div>
+ <div class="row"><label for="cl">${t("cl")}</label><input type="number" id="cl" data-f="cl" min="21" max="45" value="${S.cl}"></div>
+ <div class="row"><label for="pl">${t("pl")}</label><input type="number" id="pl" data-f="pl" min="1" max="15" value="${S.pl}"></div>
+ <div class="row"><span>${t("hij")}</span><button data-a="hij" data-v="-1">−</button><b>${S.hij>0?"+":""}${S.hij}</b><button data-a="hij" data-v="1">+</button></div>
+ <div class="row"><span>${t("fs")}</span><button data-a="fs" data-v="-10">A−</button><button data-a="fs" data-v="10">A+</button></div>
+ <div class="row"><label for="pin">${t("pin")}</label><input type="password" inputmode="numeric" id="pin" maxlength="8"><button data-a="pin">${t("save")}</button></div>
+ <div class="row"><button data-a="exp">${t("exp")}</button><button data-a="imp">${t("imp")}</button><button data-a="clr">${t("clr")}</button><button data-a="sum">${copied?t("cpd"):t("sum")}</button><button data-a="csv">${t("csv")}</button><input type="file" id="imp" accept=".json" hidden></div>
+ <p class="warn">${t("warn")}</p></section>
+ <section><details><summary>${t("gT")}</summary><p><b>${t("gh1")}</b></p><ol>${ls("gs").map(x=>`<li>${x}</li>`).join("")}</ol><p>${t("gr1")}</p></details></section>`}
+
+/* ---- single render ---- */
+function render(){
+ const s=getStatus(),tabs=["home","ibada","health","cal","set"],ic=["🏠","🕌","❤️","📅","⚙️"],tn=ls("tabs");
+ if(!tabs.includes(S.tab))S.tab="home";
+ document.documentElement.lang=S.lang;document.documentElement.style.fontSize=(S.fs||100)+"%";
+ document.documentElement.dataset.theme=S.theme==="auto"?(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"rose"):S.theme;
+ const lk=$("lock");lk.hidden=!locked;
+ if(locked&&!lk.innerHTML)lk.innerHTML=`<b>${t("unl")}</b><input id="lp" type="password" inputmode="numeric" autocomplete="off"><button class="main" data-a="ul">OK</button>`;
+ const body={home,ibada,health,cal:calendar,set:settings}[S.tab](s);
+ $("m").innerHTML=`<header><h1>${t("ttl")}<small>${t("sub")}</small></h1></header>${body}`;
+ $("nav").innerHTML=tabs.map((id,i)=>`<button role="tab" data-a="tab" data-v="${id}" aria-selected="${S.tab===id}"><span style="font-size:1.3rem">${ic[i]}</span>${tn[i]}</button>`).join("")}
+
+document.onclick=async e=>{
+ const b=e.target.closest("[data-a]");if(!b)return;
+ const a=b.dataset.a,v=b.dataset.v,td=today(),k=iso(td);
+ if(a==="loc"){navigator.geolocation&&navigator.geolocation.getCurrentPosition(p=>{S.loc={lat:p.coords.latitude,lng:p.coords.longitude};save();render()});return}
+ if(a==="ul"){const p=S.pin;try{if(p&&await hp($("lp").value,p.s)===p.h){locked=false;$("lock").innerHTML=""}else $("lp").value=""}catch(x){}render();return}
+ if(a==="pin"){const val=$("pin").value.trim();
+  if(!val)S.pin=null;else try{const salt=crypto.getRandomValues(new Uint32Array(2)).join("-");S.pin={s:salt,h:await hp(val,salt)}}catch(x){}
+  save();render();return}
+ if(a==="imp"){$("imp").click();return}
+ if(a==="clr"){if(confirm(t("sure"))){try{localStorage.removeItem(KEY)}catch(x){}location.reload()}return}
+ if(a==="exp"){const l=document.createElement("a");l.href=URL.createObjectURL(new Blob([JSON.stringify(S)],{type:"application/json"}));l.download="sakina-backup.json";l.click();S.lb=k}
+ else if(a==="sum"){const lines=[t("ttl"),`${t("avg")}: ${avg()||S.cl}`,...S.cycles.slice(-6).map(c=>`${c.s} → ${c.e||"…"}`)];
+  try{await navigator.clipboard.writeText(lines.join("\n"));copied=true;setTimeout(()=>{copied=false;render()},2000)}catch(x){}}
+ else if(a==="tab"){S.tab=v;scrollTo(0,0)}
+ else if(a==="bs")S.cycles.push({s:k,e:null});
+ else if(a==="be"){const l=S.cycles[S.cycles.length-1];if(l&&!l.e)l.e=k}
+ else if(a==="hd")S.cycles.splice(+v,1);
+ else if(a==="pa"){const val=$("past").value,s=val&&D(val);
+  if(s&&s<=td){const e=add(s,(+S.pl||6)-1);S.cycles.push({s:val,e:e<td?iso(e):null});S.cycles.sort((x,y)=>x.s<y.s?-1:1);
+   S.cycles.forEach((c,i)=>{const n=S.cycles[i+1];if(n&&(!c.e||c.e>=n.s))c.e=iso(add(D(n.s),-1))})}}
+ else if(a==="sy"){const x=S.logs[k]||[];S.logs[k]=x.includes(+v)?x.filter(i=>i!==+v):[...x,+v]}
+ else if(a==="pr"){const r=dy(k);r.pr[v]=r.pr[v]?0:1}
+ else if(a==="fl"){const r=dy(k);r.fl=r.fl===+v?-1:+v}
+ else if(a==="qa")S.qa++;
+ else if(a==="qd")S.qa=Math.max(0,S.qa-1);
+ else if(a==="qc"){S.qa+=+v;S.qc=S.cycles.filter(c=>c.e).map(c=>c.s)}
+ else if(a==="fa"){const p=S.fa[k];if(p==="m")S.qa=Math.max(0,S.qa-1);if(p===v)delete S.fa[k];else{S.fa[k]=v;if(v==="m")S.qa++}}
+ else if(a==="gh")S.gh=S.cycles[S.cycles.length-1].s;
+ else if(a==="ni0")S.ni={s:k,e:null};else if(a==="ni1")S.ni.e=k;else if(a==="nid")S.ni=null;
+
+ else if(a==="tb")dy(k).ad++;else if(a==="tbr")dy(k).ad=0;
+ else if(a==="w"){const r=dy(k);r.w=Math.max(0,r.w+ +v)}
+ else if(a==="md"){const r=dy(k);r.m=r.m===+v?-1:+v}
+ else if(a==="csv"){const ks=[...new Set([...Object.keys(S.day),...Object.keys(S.logs)])].sort(),sy=L.syms[1].split("|");
+  const rows=["date,mood,sleep,water,flow,prayers,symptoms",...ks.map(d=>{const b=S.day[d]||{};return[d,b.m,b.sl,b.w,b.fl,(b.pr||[]).join(""),(S.logs[d]||[]).map(i=>sy[i]).join("|")].map(z=>z===undefined?"":z).join(",")})];
+  const l=document.createElement("a");l.href=URL.createObjectURL(new Blob([rows.join("\n")],{type:"text/csv"}));l.download="sakina-data.csv";l.click()}
+ else if(a==="cm")cm+=+v;
+ else if(a==="hij")S.hij=Math.max(-2,Math.min(2,S.hij+ +v));
+ else if(a==="fs")S.fs=Math.min(140,Math.max(80,(S.fs||100)+ +v));
+ save();render()};
+document.onchange=e=>{const el=e.target;
+ if(el.id==="imp"){const f=el.files[0];if(!f)return;const r=new FileReader();
+  r.onload=()=>{try{const o=JSON.parse(r.result);if(Array.isArray(o.cycles)){delete o.pin;Object.assign(S,o);save();render()}}catch(x){}};r.readAsText(f);return}
+ const f=el.dataset.f;if(!f)return;
+ if(f==="cl"){S.cl=Math.min(45,Math.max(21,+el.value||28));if(S.pl>S.cl-16)S.pl=Math.max(1,S.cl-16)}
+ else if(f==="pl")S.pl=Math.min(15,Math.max(1,Math.min(+el.value||6,S.cl-16)));
+ else if(f==="sl")dy(iso(today())).sl=el.value;
+ else S[f]=el.value;
+ save();render()};
+render();
+if("serviceWorker" in navigator&&/^https?:/.test(location.protocol))navigator.serviceWorker.register("sw.js").catch(()=>{});
+</script>
+</body>
+</html>
